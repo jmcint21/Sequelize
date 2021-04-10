@@ -87,14 +87,14 @@ router.put("/dining", async (req, res) => {
 /// ////////Meals Endpoints//////////
 /// /////////////////////////////////
 
-router.route("/wholeMeal", async (req, res) => {
+router.route('/wholeMeal', async (req, res) => {
   try {
     const meals = await db.Meals.findAll();
     const macros = await db.Macros.findAll();
     const wholeMeals = meals.map((meal) => {
       const macroEntry = macros.find((macro) => macro.meal_id === meal.meal_id);
-      console.log('meal', meal)
-      console.log('macroEntry', macroEntry);
+      console.log('meal', meal.dataValues)
+      console.log('macroEntry', macroEntry.dataValues);
 
       return {
         ...meal.dataValues,
